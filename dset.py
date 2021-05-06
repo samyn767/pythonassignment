@@ -1,0 +1,33 @@
+#! /usr/bin/python
+import argparse
+
+from repositories import phonenumber, helpers
+
+def update_customers(fields, search_term):
+    result = phonenumber.update(search_term, fields)
+
+    #print result
+    if len(result):
+        print("Following " + str(len(result)) + " record(s) updated successfully.")
+        helpers.print_customers(phonenumber.fields, result, fields.keys())
+    else:
+        print("No matching records found.")
+
+# process request
+parser = argparse.ArgumentParser(description='Update customer details.')
+parser.add_argument('--id', nargs='?', help='update ID card number.')
+parser.add_argument('--name', nargs='?', help='update customer name.')
+parser.add_argument('--email', nargs='?', help='update customer email.')
+parser.add_argument('--address', nargs='?', help='update customer address.')
+parser.add_argument('--status', nargs='?', help='update customer status.')
+parser.add_argument('--plan', nargs='?', help='update customer plan.')
+parser.add_argument('term', help='search term eg: 7777777')
+
+args = parser.parse_args()
+
+fields = dict(filter(lambda f: f[0] != 'term' and f[1] != None, vars(args).items()))
+
+if 'id' in fields:
+    fields['idNumber'] = fields.pop('id')
+
+update_customers(fields, args.term)
