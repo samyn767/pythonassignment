@@ -2,7 +2,9 @@
 from commands import commands
 
 def main():
-    print("CUSTOMER PORTAL TERMINAL")
+    print("############################")
+    print("# CUSTOMER PORTAL TERMINAL #")
+    print("############################")
     cmd = commands.Commands() 
     cmd.cmdloop()
 
