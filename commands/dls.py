@@ -3,24 +3,38 @@ import argparse
 
 from repositories import phonenumber, helpers
 
-# list customers
-def list_customers(fields, search_term):
-    if fields == None:
-        print('No fields selected. use -V to print all fields.')
+# args parser
+parser = argparse.ArgumentParser(description='Process customer list request.', exit_on_error=False, prog='dls')
+# supported args
+parser.add_argument('field', type=str, choices=phonenumber.fields, help='field to print')
+parser.add_argument('--verbose', '-V', help='print more details', action='store_true')
+parser.add_argument('term', type=str, nargs='?', help='search term eg: 7777777')
 
-    result = phonenumber.search_customers(search_term)
+# sets printable fields
+verbose_fields = {
+    'name': ['name', 'address', 'email'],
+    'idNumber': ['idNumber', 'name', 'address', 'email'],
+    'phoneNumber': ['idNumber', 'name', 'address', 'email', 'staus'],
+    'LBPD': ['LBPD', 'unbillCharges', 'outstanding', 'LBAP'],
+
+}
+
+# sets searchable fields
+search_args = { 
+    'name': { 'idNumber': True },
+    'phoneNumber': { 'idNumber': True, 'phone': False, 'name': True },
+    'address': { 'idNumber': True, 'name': True },
+    'idNumber': { 'name': True },
+}
+
+# list customers
+def list_customers(field, print_fields, search_term):
+    result = phonenumber.search_customers(search_term, **search_args.get(field, {}))
 
     #print result
     print("Customers:")
-    helpers.print_customers(fields, result)
-    print(str(len(result)) + " matching result(s) found.")
-
-# args parser
-parser = argparse.ArgumentParser(description='Process customer list request.', exit_on_error = False, prog='dls')
-# supported args
-parser.add_argument('field', type=str, choices=phonenumber.fields, help='field to print')
-parser.add_argument('--verbose', '-V', help='print all fields', action='store_true')
-parser.add_argument('term', type=str, nargs='?', help='search term eg: 7777777')
+    helpers.print_customers(print_fields, result)
+    print(str(len(result)) + " matching records(s) found.")
 
 # process request
 def execute(input):
@@ -32,6 +46,9 @@ def execute(input):
     except SystemExit:
         return
 
-    field = phonenumber.fields if args.verbose else [args.field]
+    if args.verbose:
+        print_fields = verbose_fields.get(args.field, [args.field])
+    else:
+        print_fields = [args.field]
 
-    list_customers(field, args.term)
+    list_customers(args.field, print_fields, args.term)

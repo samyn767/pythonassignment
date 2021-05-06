@@ -20,7 +20,7 @@ parser.add_argument('--id', nargs='?', help='update ID card number.')
 parser.add_argument('--name', nargs='?', help='update customer name.')
 parser.add_argument('--email', nargs='?', help='update customer email.')
 parser.add_argument('--address', nargs='?', help='update customer address.')
-parser.add_argument('--status', nargs='?', help='update customer status.')
+parser.add_argument('--staus', nargs='?', choices = ['Active', 'Barred', 'Terminated'], help='update customer status.')
 parser.add_argument('--plan', nargs='?', help='update customer plan.')
 parser.add_argument('term', help='search term eg: 7777777')
 
