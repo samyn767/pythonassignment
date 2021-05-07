@@ -57,18 +57,22 @@ parser = argparse.ArgumentParser(description='SIMPLE EXAMPLE')
 
 parser.add_argument('-s', '--search', help='search customer using any parameter')
 parser.add_argument('-f', '--find', help='list all customers')
-parser.add_argument( 'NAME', const='name', help='list all customers')
-
-args = parser.parse_args(input("Dhiraagu #: ").split())
-#print (args)
+parser.add_argument( 'NAME', help='list all customers')
+parser.add_argument( 'EXIT', help='exit program')
 
 
-if args.search !=None and args.NAME =="name":
-    print(args)
-    seachunknown(args.search,1)
+while 1:
+    args = parser.parse_args(input("Dhiraagu #: ").split())
+    #print (args)
+    
+    if args.search !=None and args.NAME =="name":
+        print(args)
+        seachunknown(args.search,1)
     #filename= seachunknown(args.find)
     #print(filename)
-elif args.find:
-    findAllCust(args.find)
-elif args.search !=null and args.NAME ==null:
-    seachunknown(args.search,1)
+    elif args.find:
+        findAllCust(args.find)
+    elif args.search !=null and args.NAME ==null:
+        seachunknown(args.search,1)
+    elif args.exit =="exit":
+        break

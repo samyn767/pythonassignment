@@ -28,13 +28,13 @@ customer = {
 
 if __name__ == '__main__':
     
-
-    #f = open("7475767.txt", "w+")
-    #f.write(str(customer))
-    #f.close()
+#write files
+    f = open("7475767.txt", "w+")
+    f.write(str(customer))
+    f.close()
     
     
-    
+   #read file 
     print("reading from file .....")
     f = open("7475767.txt", 'r')
     print(f.read())
