@@ -1,7 +1,7 @@
 #! /usr/bin/python
 import argparse
 
-from repositories import phonenumber, helpers
+from repositories import phonenumber, mobile_plan, helpers
 
 def update_customers(fields, search_term):
     result = phonenumber.update(search_term, fields)
@@ -14,6 +14,8 @@ def update_customers(fields, search_term):
     else:
         print("No matching records found.\n")
 
+# get all plans
+plans = mobile_plan.load(None)
 # args parser
 parser = argparse.ArgumentParser(description='Update customer details.', prog='dset')
 # supported args
@@ -22,7 +24,7 @@ parser.add_argument('--name', nargs='?', help='update customer name.')
 parser.add_argument('--email', nargs='?', help='update customer email.')
 parser.add_argument('--address', nargs='?', help='update customer address.')
 parser.add_argument('--staus', nargs='?', choices = ['Active', 'Barred', 'Terminated'], help='update customer status.')
-parser.add_argument('--plan', nargs='?', help='update customer plan.')
+parser.add_argument('--plan', nargs='?', choices= [p['name'] for p in plans], help='update customer plan.')
 parser.add_argument('term', help='search term eg: 7777777')
 
 # process request
