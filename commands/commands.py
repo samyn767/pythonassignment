@@ -1,11 +1,13 @@
 from cmd import Cmd
 import sys
-from . import dls, dset
 import shlex
 
+from . import dls, dset
+from repositories.helpers import bcolors
+
 class Commands(Cmd):
-    prompt = 'Customer Portal Terminal# '
-    intro = 'Welcome To Dhiraagu Customer Portal Terminal.\n---------------------------------------------'
+    prompt = bcolors.HEADER + 'Customer Portal Terminal# ' + bcolors.ENDC
+    intro = bcolors.HEADER + 'Welcome To Dhiraagu Customer Portal Terminal.\n---------------------------------------------' + bcolors.ENDC
 
     def do_exit(self, inp):
         '''Exit The Customer Portal Terminal.'''

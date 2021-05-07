@@ -1,10 +1,9 @@
 #! /usr/bin/python
 from commands import commands
+from repositories.helpers import bcolors
 
 def main():
-    print("############################")
-    print("# CUSTOMER PORTAL TERMINAL #")
-    print("############################")
+    print(f"{bcolors.HEADER}----------------------------\n| CUSTOMER PORTAL TERMINAL |\n----------------------------{bcolors.ENDC}")
     cmd = commands.Commands() 
     cmd.cmdloop()
 

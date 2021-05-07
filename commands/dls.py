@@ -41,7 +41,7 @@ def execute(input):
     try:
         args = parser.parse_args(input)
     except argparse.ArgumentError:
-        print("Invalid Arguments")
+        print(f"{helpers.bcolors.WARNING}Invalid Arguments{helpers.bcolors.ENDC}")
         return
     except SystemExit:
         return
