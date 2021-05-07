@@ -29,6 +29,13 @@ def print_customers(fields, result, highlights = []):
 
         print("\n")
 
+def list_customers(customers):
+    row_format = "\t{:<12} {:<10} {:<20} {:<10}"
+    #print header
+    print(bcolors.OKGREEN + bcolors.BOLD + row_format.format("PHONE", "ID NUMBER", "CUSTOMER NAME", "STATUS") + bcolors.ENDC)
+    for customer in customers:
+        print(bcolors.OKCYAN + row_format.format(customer['phoneNumber'], customer['idNumber'], customer['name'], customer['staus']) + bcolors.ENDC)
+
 class bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'

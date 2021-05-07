@@ -11,7 +11,7 @@ class Commands(Cmd):
 
     def do_exit(self, inp):
         '''Exit The Customer Portal Terminal.'''
-        print("GOODBYE!!")
+        print(f"{bcolors.HEADER}GOODBYE!!{bcolors.ENDC}")
         return True
 
     def emptyline(self):
