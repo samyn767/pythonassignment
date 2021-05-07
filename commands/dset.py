@@ -10,8 +10,9 @@ def update_customers(fields, search_term):
     if len(result):
         print("Following " + str(len(result)) + " record(s) updated successfully.")
         helpers.print_customers(phonenumber.fields, result, fields.keys())
+        print("\n")
     else:
-        print("No matching records found.")
+        print("No matching records found.\n")
 
 # args parser
 parser = argparse.ArgumentParser(description='Update customer details.', prog='dset')

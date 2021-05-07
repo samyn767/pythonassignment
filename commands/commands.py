@@ -12,6 +12,9 @@ class Commands(Cmd):
         print("GOODBYE!!")
         return True
 
+    def emptyline(self):
+         pass
+
     def help_exit(self):
         print('Exit the application. Ctrl-D.')
 

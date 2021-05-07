@@ -10,7 +10,6 @@ def read_file(filename):
         f.close()
 
 def write_file(data, filename):
-    print(data, filename)
     with open(filename, 'w') as outfile:
         json.dump(data, outfile)
 

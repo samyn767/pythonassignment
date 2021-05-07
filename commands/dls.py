@@ -34,7 +34,7 @@ def list_customers(field, print_fields, search_term):
     #print result
     print("Customers:")
     helpers.print_customers(print_fields, result)
-    print(str(len(result)) + " matching records(s) found.")
+    print(str(len(result)) + " matching records(s) found.\n")
 
 # process request
 def execute(input):
