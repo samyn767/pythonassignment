@@ -2,7 +2,7 @@ from cmd import Cmd
 import sys
 import shlex
 
-from . import dls, dset
+from . import dls, dset, pls
 from repositories.helpers import bcolors
 
 class Commands(Cmd):
@@ -31,6 +31,12 @@ class Commands(Cmd):
 
     def help_dset(self):
         dset.parser.print_help()
+
+    def do_pls(self, inp):
+        pls.execute(shlex.split(inp))
+
+    def help_pls(self):
+        pls.parser.print_help()
 
     do_EOF = do_exit
     help_EOF = help_exit

@@ -36,6 +36,25 @@ def list_customers(customers):
     for customer in customers:
         print(bcolors.OKCYAN + row_format.format(customer['phoneNumber'], customer['idNumber'], customer['name'], customer['staus']) + bcolors.ENDC)
 
+def list_plans(plans):
+    row_format = "\t{:<5} {:<20} {:<10}"
+    #print header
+    print(bcolors.OKGREEN + bcolors.BOLD + row_format.format("", "PLAN NAME", "PRICE") + bcolors.ENDC)
+    for index, plan in enumerate(plans, start=1):
+        print(bcolors.OKCYAN + row_format.format(index, plan['name'], plan['price']) + bcolors.ENDC)
+
+def print_plans(plans):
+    row_format = "{:<10}{:<20}: {:<20}"
+
+    for plan in plans:
+        #print customer name
+        print(f"{bcolors.OKGREEN}\t{plan['name'].upper()}{bcolors.ENDC}")
+        # filter selected fields
+        for field, value in plan.items():
+            print(bcolors.OKCYAN + row_format.format('', field, value) + bcolors.ENDC)
+
+        print("\n")
+
 class bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
