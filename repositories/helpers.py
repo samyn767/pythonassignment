@@ -35,6 +35,14 @@ def list_customers(customers):
     print(bcolors.OKGREEN + bcolors.BOLD + row_format.format("PHONE", "ID NUMBER", "CUSTOMER NAME", "STATUS") + bcolors.ENDC)
     for customer in customers:
         print(bcolors.OKCYAN + row_format.format(customer['phoneNumber'], customer['idNumber'], customer['name'], customer['staus']) + bcolors.ENDC)
+        
+def print_customer(customer):
+    row_format = "\t{:<20}: {:<20}"
+
+    for field, value in customer.items():
+        print(bcolors.OKCYAN + row_format.format(field, value) + bcolors.ENDC)
+
+    print("\n")
 
 def list_plans(plans):
     row_format = "\t{:<5} {:<20} {:<10}"
